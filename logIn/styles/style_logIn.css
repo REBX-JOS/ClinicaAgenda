@@ -39,15 +39,16 @@ body{
   transform: scaleX(-1);
 }
 .logo-logIn {
-  margin-bottom: 450px;
+  margin-bottom: 480px;
   transform: scaleX(-1);
+  margin-top: 20px;
 }
 
 .right-panel{
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:flex-start; 
+  justify-content:center;
   background-color: #1cad8f;
   padding-top: 84.3px !important;
   padding:36px;
