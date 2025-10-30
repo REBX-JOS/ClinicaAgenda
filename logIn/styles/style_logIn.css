@@ -14,8 +14,6 @@ html,body,#root{height:100%}
 body{
   margin:0;
   min-height:100vh;
-  background:linear-gradient(180deg,var(--bg),#ffffff);
-  color:#111827;
 }
 
 .page{
@@ -34,7 +32,6 @@ body{
   background-image: url('../../imagenes/doctores_logIn.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
   background-position: center 10%;
   transform: scaleX(-1);
 }
@@ -103,16 +100,39 @@ body{
   align-items: center;
 }
 
-.primary{background:var(--primary);color:white;border:0;padding:10px 14px;border-radius:8px;cursor:pointer}
-.primary:hover{background:var(--primary-600)}
-.link{background:none;border:0;color:var(--primary);cursor:pointer}
+.primary{
+    background:var(--primary);
+    color:white;
+    border:0;
+    padding:10px 14px;
+    border-radius:8px;
+    cursor:pointer;
+}
+.primary:hover{
+    background:var(--primary-600);
+}
+.link{
+    background:none;
+    border:0;
+    color:var(--primary);
+    cursor:pointer;
+}
 
-.form-footer{margin-top:8px;text-align:center;color:var(--muted);font-size:14px}
-.form-footer a{color:var(--primary);text-decoration:underline;cursor:pointer}
-.form-footer a:focus{outline:none;box-shadow:0 0 0 3px rgba(37,99,235,0.12);border-radius:4px}
-
-#form-register .form-actions {
-  justify-content: center;
+.form-footer{
+    margin-top:8px;
+    text-align:center;
+    color:var(--muted);
+    font-size:14px;
+}
+.form-footer a{
+    color:var(--primary);
+    text-decoration:underline;
+    cursor:pointer;
+}
+.form-footer a:focus{
+    outline:none;
+    box-shadow:0 0 0 3px rgba(37,99,235,0.12);
+    border-radius:4px;
 }
 
 /* Responsive */
@@ -126,6 +146,3 @@ body{
   .card{padding:16px}
   .brand h1{font-size:22px}
 }
-
-/* small helpers */
-.subtitle{color:var(--muted);font-size:14px}
