@@ -6,6 +6,10 @@
   --cta: #00b08a;
 }
 
+.nav-link {
+  color: #111;
+}
+
 /* Hacer hero full-width */
 .hero-wrapper {
   width: 100%;
@@ -16,7 +20,7 @@
 /* El bloque hero ocupa viewport (ajustar altura) */
 .hero {
   position: relative;
-  height: 88vh;
+  height: 100vh;
   min-height: 640px;
   display: block;
   overflow: hidden;
@@ -27,7 +31,7 @@
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('../images/hero-bg.jpg');
+  background-image: url('/imagenes/hero-bg.jpg');
   background-position: center;
   background-size: cover;
   filter: saturate(0.95) brightness(0.95);
@@ -127,7 +131,14 @@
 }
 
 /* flecha */
-.down-anchor svg path { stroke: #fff; }
+.down-anchor {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  stroke: #fff; 
+}
 
 /* Responsive: reducir altura en móviles y mostrar búsqueda en modo hamburguesa si necesario */
 @media (max-width: 991px) {
