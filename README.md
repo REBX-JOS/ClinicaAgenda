@@ -20,7 +20,7 @@ ClinicaAgenda es una aplicación web diseñada para la gestión eficiente de cit
    ```bash
    git clone https://github.com/REBX-JOS/ClinicaAgenda.git
    ```
-2. Abre el archivo `index.html` en tu navegador favorito.
+2. Abre el archivo `html_inicio.html` en tu navegador favorito.
 3. ¡Comienza a gestionar tus citas!
 
 ## Contribuciones
