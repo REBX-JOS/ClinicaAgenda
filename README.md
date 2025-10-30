@@ -6,8 +6,6 @@ ClinicaAgenda es una aplicación web diseñada para la gestión eficiente de cit
 
 - Registro, edición y eliminación de citas médicas.
 - Visualización de agenda diaria, semanal y mensual.
-- Gestión de pacientes y médicos.
-- Notificaciones y recordatorios de citas.
 - Interfaz intuitiva creada con HTML, CSS y JavaScript.
 
 ## Tecnologías utilizadas
@@ -29,10 +27,7 @@ ClinicaAgenda es una aplicación web diseñada para la gestión eficiente de cit
 
 ¡Las contribuciones son bienvenidas! Si tienes sugerencias, ideas o encuentras errores, por favor abre un issue o envía un pull request.
 
-## Licencia
-
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
-
 ---
 
-Desarrollado por [REBX-JOS](https://github.com/REBX-JOS)
+Desarrollado por:
+   [REBX-JOS](https://github.com/REBX-JOS)
