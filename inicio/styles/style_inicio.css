@@ -1,0 +1,95 @@
+/* styles.css - estilos extras para hero */
+/* Tipografía base */
+body {
+  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: #f7f7f7;
+}
+
+/* Contenedor del hero con borde y esquina redondeada */
+.hero-wrapper {
+  box-shadow: 0 6px 28px rgba(18, 24, 33, 0.12);
+  overflow: hidden;
+}
+
+/* Imagen de fondo: usa background-image en .hero-bg */
+.hero {
+  height: 68vh; /* ajusta según preferencia */
+  min-height: 520px;
+  position: relative;
+}
+
+/* Ajusta la URL a tu imagen real */
+.hero-bg {
+  background-image: url('images/clinic-bg.jpg');
+  background-position: center;
+  background-size: cover;
+  filter: saturate(0.95) brightness(0.85);
+  position: absolute;
+  inset: 0;
+}
+
+/* overlay oscuro sutil para mejorar lectura */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11,20,28,0.36), rgba(11,20,28,0.36));
+}
+
+/* contenido encima del overlay */
+.hero-content { z-index: 2; }
+
+/* título grande y ligero */
+.hero-title {
+  font-weight: 300;
+  font-size: clamp(1.8rem, 4.4vw, 3.6rem);
+  line-height: 1.05;
+  margin-bottom: 0.4rem;
+}
+
+/* pequeña separación y tracking del subtítulo */
+.lead.letter-spacing-3 {
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+/* search pill estilo */
+.search-pill {
+  min-width: 260px;
+  border-radius: 999px;
+  gap: .5rem;
+}
+
+/* input dentro de la pill */
+.search-pill .form-control:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+/* botón CTA personalizado */
+.btn-success {
+  background: #00a57a;
+  border: 0;
+  box-shadow: 0 6px 18px rgba(0,165,122,0.18);
+}
+
+/* flecha: pequeño efecto */
+.down-anchor svg {
+  opacity: 0.95;
+  transition: transform .25s ease;
+}
+.down-anchor:hover svg { transform: translateY(6px); }
+
+/* responsive: reducción de altura en pantallas pequeñas */
+@media (max-width: 768px) {
+  .hero {
+    height: 60vh;
+    min-height: 420px;
+  }
+  /* esconder la búsqueda en pantallas pequeñas (ya se oculta con d-none d-md-flex) */
+}
+
+/* accesibilidad: contraste del texto en imagen */
+.hero-content .lead,
+.hero-content .display-4 {
+  text-shadow: 0 2px 10px rgba(0,0,0,0.35);
+}
