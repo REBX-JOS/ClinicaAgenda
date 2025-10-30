@@ -80,16 +80,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const fullname = formData.get('fullname')?.trim();
     const email = formData.get('email')?.trim();
     const password = formData.get('password')?.trim();
+    const passwordConfirm = formData.get('passwordConfirm')?.trim();
 
-    if (!fullname || !email || !password) {
+    if (!fullname || !email || !password || !passwordConfirm) {
       alert('Por favor completa todos los campos.');
       return;
     }
-
+    if (password !== passwordConfirm) {
+      alert('Las contraseñas no coinciden.');
+      return;
+    }
     // TODO: reemplazar con llamada real de registro
     console.log('Register', { fullname, email });
     alert('Registro enviado (simulado).');
     formRegister.reset();
     showLogin();
+  });
+
+  // Accesibilidad de teclado: permitir flechas izquierda/derecha para alternar
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') showLogin();
+    if (e.key === 'ArrowRight') showRegister();
   });
 });
