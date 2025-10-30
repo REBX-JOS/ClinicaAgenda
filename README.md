@@ -30,5 +30,5 @@ ClinicaAgenda es una aplicación web diseñada para la gestión eficiente de cit
 ---
 
 Desarrollado por:
-   [REBX-JOS](https://github.com/REBX-JOS)
-   [fgthx](https://github.com/fgthx)
+   - [REBX-JOS](https://github.com/REBX-JOS)
+   - [fgthx](https://github.com/fgthx)
