@@ -98,7 +98,12 @@ body{
   border-bottom-color: #1cad8f; /* Primary color on focus */
 }
 
-.form-actions{display:flex;align-items:center;gap:12px;margin-top:6px}
+.form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .primary{background:var(--primary);color:white;border:0;padding:10px 14px;border-radius:8px;cursor:pointer}
 .primary:hover{background:var(--primary-600)}
 .link{background:none;border:0;color:var(--primary);cursor:pointer}
@@ -107,7 +112,6 @@ body{
 .form-footer a{color:var(--primary);text-decoration:underline;cursor:pointer}
 .form-footer a:focus{outline:none;box-shadow:0 0 0 3px rgba(37,99,235,0.12);border-radius:4px}
 
-/* Center the register button */
 #form-register .form-actions {
   justify-content: center;
 }
