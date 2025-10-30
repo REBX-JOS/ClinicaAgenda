@@ -31,7 +31,7 @@
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('/imagenes/hero-bg.jpg');
+  background-image: url('../../imagenes/hero-bg.jpg');
   background-position: center;
   background-size: cover;
   filter: saturate(0.95) brightness(0.95);
