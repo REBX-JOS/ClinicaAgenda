@@ -1,61 +1,74 @@
-// scripts.js - genera la rejilla de horario con horas y selección por arrastre (ratón y táctil)
+// script_calendario.js - genera la rejilla, añade horas y permite selección por arrastre.
+// Implementa también toggle del hamburger (clase .open)
 
 document.addEventListener('DOMContentLoaded', function () {
   const grid = document.getElementById('scheduleGrid');
   const showMoreBtn = document.getElementById('showMore');
-  const DAYS = 7;
-  let isMouseDown = false;
-  let dragMode = null; // "select" or "deselect"
-  const touchedCells = new Set();
+  const hamburger = document.querySelector('button.hamburger');
 
-  // Horario: empieza a las 08:00, intervalo 30 minutos
-  let startHour = 8;
+  // schedule config: start 08:00, 30min slots
+  const startHour = 8;
   const intervalMinutes = 30;
-  let rowsCount = 7; // filas iniciales
-  createRows(rowsCount);
+  const DAYS = 7;
+  let rowsCreated = 0;
 
-  // Añadir más filas (sigue la secuencia temporal)
-  showMoreBtn.addEventListener('click', function () {
-    createRows(2);
-    showMoreBtn.setAttribute('aria-expanded', 'true');
-    setTimeout(() => window.scrollBy({ top: 180, behavior: 'smooth' }), 120);
-  });
+  // create initial rows (to resemble image)
+  createRows(6);
 
-  // Toggle selección en click simple
-  grid.addEventListener('click', function (e) {
-    const cell = e.target.closest('.cell');
-    if (!cell) return;
-    toggleCell(cell);
-  });
+  // Show more
+  if (showMoreBtn) {
+    showMoreBtn.addEventListener('click', function () {
+      createRows(2);
+      showMoreBtn.setAttribute('aria-expanded', 'true');
+      setTimeout(() => window.scrollBy({ top: 200, behavior: 'smooth' }), 120);
+    });
+  }
 
-  // Soporte arrastre con ratón
+  // Hamburger toggle
+  if (hamburger) {
+    hamburger.addEventListener('click', function () {
+      const open = hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
+  // Selection by click and by drag (mouse + touch)
+  let isMouseDown = false;
+  let dragMode = null;
+  const touched = new Set();
+
   grid.addEventListener('mousedown', function (e) {
     const cell = e.target.closest('.cell');
     if (!cell) return;
     isMouseDown = true;
     dragMode = !cell.classList.contains('selected') ? 'select' : 'deselect';
-    applyDragToCell(cell);
+    applyDrag(cell);
     e.preventDefault();
   });
-  document.addEventListener('mouseup', function () { isMouseDown = false; dragMode = null; });
+  document.addEventListener('mouseup', () => { isMouseDown = false; dragMode = null; touched.clear(); });
 
   grid.addEventListener('mouseover', function (e) {
-    if (!isMouseDown || !dragMode) return;
+    if (!isMouseDown) return;
     const cell = e.target.closest('.cell');
     if (!cell) return;
-    applyDragToCell(cell);
+    applyDrag(cell);
   });
 
-  // Soporte táctil (touch)
+  grid.addEventListener('click', function (e) {
+    const cell = e.target.closest('.cell');
+    if (!cell) return;
+    cell.classList.toggle('selected');
+  });
+
+  // touch support
   grid.addEventListener('touchstart', function (e) {
     const touch = e.touches[0];
     const el = document.elementFromPoint(touch.clientX, touch.clientY);
     const cell = el && el.closest('.cell');
     if (!cell) return;
-    // determinar modo
     dragMode = !cell.classList.contains('selected') ? 'select' : 'deselect';
-    touchedCells.clear();
-    applyDragToCell(cell);
+    touched.clear();
+    applyDrag(cell);
     e.preventDefault();
   }, { passive: false });
 
@@ -64,59 +77,57 @@ document.addEventListener('DOMContentLoaded', function () {
     const el = document.elementFromPoint(touch.clientX, touch.clientY);
     const cell = el && el.closest('.cell');
     if (!cell) return;
-    applyDragToCell(cell);
+    applyDrag(cell);
     e.preventDefault();
   }, { passive: false });
 
   grid.addEventListener('touchend', function () {
     dragMode = null;
-    touchedCells.clear();
+    touched.clear();
   });
 
-  // Días: selección visual
+  // day buttons simple behavior
   document.querySelectorAll('.day').forEach((btn, idx) => {
-    if (idx === 0) btn.classList.add('active'); // Lunes activo por defecto
+    if (idx === 0) btn.classList.add('active');
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.day').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.day').forEach(d => d.classList.remove('active'));
       btn.classList.add('active');
     });
   });
 
-  // Hamburger (solo visual)
-  document.querySelector('.hamburger').addEventListener('click', () => {
-    document.querySelector('.topbar').classList.toggle('open');
-  });
+  // helpers
 
-  // --- funciones auxiliares ---
+  function applyDrag(cell) {
+    const id = cell.__id || (cell.__id = Math.random().toString(36).slice(2));
+    if (touched.has(id)) return;
+    touched.add(id);
+    if (dragMode === 'select') cell.classList.add('selected');
+    else if (dragMode === 'deselect') cell.classList.remove('selected');
+  }
 
-  // Crea n filas consecutivas con etiquetas de tiempo
   function createRows(n) {
-    // calcular la hora de inicio en base al número de filas ya existentes
-    const existingSlots = grid.querySelectorAll('.row').length;
-    let slotIndex = existingSlots;
     for (let r = 0; r < n; r++) {
       const row = document.createElement('div');
       row.className = 'row';
       for (let c = 0; c < DAYS; c++) {
         const cell = document.createElement('div');
         cell.className = 'cell';
-        const timeText = slotIndexToTime(slotIndex);
+        const timeText = slotIndexToTime(rowsCreated);
         const timeEl = document.createElement('div');
         timeEl.className = 'time';
         timeEl.textContent = timeText;
         const labelEl = document.createElement('div');
         labelEl.className = 'label';
-        labelEl.textContent = ''; // espacio para el servicio si se necesita
+        labelEl.textContent = ''; // placeholder for service/notes
         cell.appendChild(timeEl);
         cell.appendChild(labelEl);
         row.appendChild(cell);
       }
       grid.appendChild(row);
-      slotIndex++;
+      rowsCreated++;
     }
   }
 
-  // convierte índice de slot a hora (ej: 0 -> 08:00, 1 -> 08:30, 2 -> 09:00, ...)
   function slotIndexToTime(index) {
     const totalMinutes = startHour * 60 + index * intervalMinutes;
     const hh = Math.floor(totalMinutes / 60);
@@ -124,24 +135,5 @@ document.addEventListener('DOMContentLoaded', function () {
     const hhStr = String(hh).padStart(2, '0');
     const mmStr = String(mm).padStart(2, '0');
     return `${hhStr}:${mmStr}`;
-  }
-
-  // Alterna una celda (click)
-  function toggleCell(cell) {
-    cell.classList.toggle('selected');
-  }
-
-  // Aplicar arrastre: seleccionar o deseleccionar según dragMode
-  function applyDragToCell(cell) {
-    // evitar repetir muchas veces en touchmove
-    const id = cell.__cellId || (cell.__cellId = Math.random().toString(36).slice(2));
-    if (touchedCells.has(id)) return;
-    touchedCells.add(id);
-
-    if (dragMode === 'select') {
-      cell.classList.add('selected');
-    } else if (dragMode === 'deselect') {
-      cell.classList.remove('selected');
-    }
   }
 });

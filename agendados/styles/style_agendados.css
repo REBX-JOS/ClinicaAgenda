@@ -1,4 +1,3 @@
-
 :root{
   --teal-strong: #1cad8f; /* color tabs */
   --teal-light: #afe1d7;  /* pill background */
@@ -23,89 +22,73 @@ html,body{height:100%;margin:0;font-family: "Inter", -apple-system, BlinkMacSyst
 .logo{width:84px;height:84px;object-fit:contain}
 .brand-text{font-size:18px;letter-spacing:1px;color:#222;font-weight:500}
 
-/* Right actions */
+/* Right actions in topbar */
 .topbar-actions{display:flex;align-items:center;gap:12px}
 .search-top{display:flex;align-items:center;background:#f6f6f6;border-radius:28px;padding:8px 12px;border:1px solid var(--border)}
 .search-top input{border:0;background:transparent;padding:8px 6px;outline:none;width:210px}
 .search-top .search-btn{border:0;background:transparent;padding:4px;cursor:pointer}
 
-/* small icons */
-.hamburger{width:44px;height:44px;border-radius:6px;border:0;background:transparent;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
-.hamburger span{display:block;width:18px;height:2px;background:#555;margin:3px 0;border-radius:2px}
-.avatar{width:52px;height:52px;border-radius:50%;border:3px solid var(--accent);display:flex;align-items:center;justify-content:center;background:#fff;cursor:pointer}
+/* Hamburger (single span with pseudo) */
+button.hamburger{
+  -webkit-appearance:none;appearance:none;border:0;background:transparent;padding:8px;margin:0;cursor:pointer;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;
+}
+button.hamburger > .bars{display:block;width:22px;height:3px;background:#555;border-radius:2px;position:relative}
+button.hamburger > .bars::before, button.hamburger > .bars::after{content:"";position:absolute;left:0;width:100%;height:3px;background:#555;border-radius:2px}
+button.hamburger > .bars::before{transform:translateY(-8px)} button.hamburger > .bars::after{transform:translateY(8px)}
+button.hamburger.open > .bars{background:transparent} button.hamburger.open > .bars::before{transform:translateY(0) rotate(45deg)} button.hamburger.open > .bars::after{transform:translateY(0) rotate(-45deg)}
 
-/* Tabs row */
-.tabs-row{display:flex;align-items:center;gap:18px;padding:12px 0}
-.tab{background:var(--teal-light);border-radius:28px;padding:12px 26px;border:0;color:var(--teal-strong);font-weight:600;box-shadow:inset 0 -6px 0 rgba(0,0,0,0.02)}
-.buscar-cliente{margin-left:18px;display:flex;align-items:center;background:transparent;border-radius:28px;padding:6px 8px}
-.buscar-cliente input{border:0;background:var(--teal-light);padding:10px 16px;border-radius:24px;outline:none;width:280px;border:1px solid rgba(0,0,0,0.03)}
-.buscar-cliente .search-small{margin-left:-46px;background:transparent;border:0;padding:6px;cursor:pointer}
-
-/* Services list container */
-.services-list-wrap{padding-top:6px}
-.services-list{display:flex;flex-direction:column;gap:14px;padding:18px 6px}
-
-/* Each row box */
-.service-row{
-  border:1px solid var(--border);
-  border-radius:var(--radius-row);
-  padding:12px;
+/* ---------- TABS ROW: now with left/right wrappers ---------- */
+/* Make the tabs row space-between so avatar is at the extreme right */
+.tabs-row{
   display:flex;
   align-items:center;
-  gap:14px;
-  background: #fff;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  justify-content:space-between; /* <-- ensures avatar is at far right */
+  gap:18px;
+  padding:12px 0;
+  margin-top:8px;
+  border-bottom:1px solid transparent;
 }
 
-/* Pill items inside row */
-.pill{
-  background:var(--teal-light);
-  padding:10px 18px;
-  border-radius:999px;
-  border:1px solid rgba(0,0,0,0.05);
-  color:#15493f;
-  font-weight:600;
-  min-width:160px;
-  text-align:center;
-  box-shadow: inset 0 -4px 0 rgba(0,0,0,0.02);
-  flex: 1 1 0;
+/* left group holds tab + search */
+.tabs-left{display:flex;align-items:center;gap:18px}
+
+/* Tab and buscar */
+.tab{background:var(--teal-light);border-radius:28px;padding:12px 26px;border:0;color:var(--teal-strong);font-weight:600;box-shadow:inset 0 -6px 0 rgba(0,0,0,0.02)}
+.buscar-cliente{display:flex;align-items:center;background:transparent;border-radius:28px;padding:6px 8px}
+.buscar-cliente input{border:0;background:var(--teal-light);padding:10px 16px;border-radius:24px;outline:none;width:320px;border:1px solid rgba(0,0,0,0.03)}
+.buscar-cliente .search-small{margin-left:-46px;background:transparent;border:0;padding:6px;cursor:pointer}
+
+/* right group holds avatar (keeps at extreme right) */
+.tabs-right{display:flex;align-items:center;gap:12px}
+.user-avatar{
+  width:56px;height:56px;border-radius:50%;border:3px solid var(--accent);background:#fff;display:inline-flex;align-items:center;justify-content:center;padding:4px;cursor:pointer;
 }
 
-/* Some pills can be smaller (costo/hora) */
+/* Services list layout (igual que antes) */
+.services-list-wrap{padding-top:6px}
+.services-list{display:flex;flex-direction:column;gap:14px;padding:18px 6px}
+.service-row{border:1px solid var(--border);border-radius:var(--radius-row);padding:12px;display:flex;align-items:center;gap:14px;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,0.02)}
+.pill{background:var(--teal-light);padding:10px 18px;border-radius:999px;border:1px solid rgba(0,0,0,0.05);color:#15493f;font-weight:600;min-width:160px;text-align:center;box-shadow:inset 0 -4px 0 rgba(0,0,0,0.02);flex:1 1 0}
 .pill.small{min-width:90px;max-width:140px}
 .pill.action{min-width:120px;max-width:160px}
-
-/* Cancel pill */
-.pill.cancel{
-  background:var(--cancel-pink);
-  color:#7a3f3f;
-  border:1px solid rgba(0,0,0,0.04);
-}
-
-/* Canceled row visual */
-.service-row.canceled{
-  opacity:0.65;
-  filter:grayscale(0.02);
-}
-
-/* Provide subtle gap and alignment so layout matches image */
+.pill.cancel{background:var(--cancel-pink);color:#7a3f3f;border:1px solid rgba(0,0,0,0.04)}
+.service-row.canceled{opacity:0.65;filter:grayscale(0.02)}
 .service-row .pill + .pill{margin-left:10px}
 
-/* Show more center */
+/* Show more */
 .show-more-wrap{display:flex;justify-content:center;margin-top:18px}
 .show-more{background:transparent;border:0;color:#333;cursor:pointer;padding:8px 12px;display:flex;flex-direction:column;align-items:center;gap:6px}
 .show-more svg{opacity:0.8}
 
-/* Responsive tweaks */
-@media (max-width:1000px){
-  .container{padding:12px}
-  .buscar-cliente input{width:200px}
-  .pill{min-width:120px}
+/* Responsive */
+@media (max-width:920px){
+  .buscar-cliente input{width:220px}
 }
 @media (max-width:700px){
-  .tabs-row{flex-wrap:wrap}
-  .buscar-cliente{order:3;width:100%;justify-content:flex-start;margin-top:8px}
-  .service-row{flex-direction:column;align-items:stretch;gap:10px;padding:10px}
-  .pill{min-width:0;width:100%}
-  .pill.small{max-width:none}
+  .tabs-row{flex-direction:column;align-items:flex-start;gap:12px}
+  .tabs-left{width:100%;display:flex;gap:12px;align-items:center}
+  .tabs-right{align-self:flex-end}
+  .buscar-cliente input{width:100%}
+  .service-row{flex-direction:column;align-items:stretch}
+  .pill{width:100%}
 }

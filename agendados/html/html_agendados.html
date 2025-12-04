@@ -25,29 +25,37 @@
           </button>
         </div>
 
-        <button class="hamburger" aria-label="Menú" title="Menú">
-          <span></span><span></span><span></span>
+        <!-- botón minimalista: un solo span, barras con pseudo-elementos -->
+        <button class="hamburger" aria-label="Menú" title="Menú" aria-expanded="false">
+          <span class="bars" aria-hidden="true"></span>
         </button>
 
-        <div class="avatar" title="Perfil" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="40" height="40" aria-hidden="true">
-            <circle cx="12" cy="8" r="4" fill="#9fdcca"></circle>
-            <path d="M4 20c1.8-4.4 7.4-4.4 8-4.4s6.2 0 8 4.4" fill="#9fdcca"></path>
-          </svg>
-        </div>
       </div>
     </div>
   </header>
 
   <main class="container">
+    <!-- WRAPPER: ahora left (tab + buscar) y right (avatar) -->
     <nav class="tabs-row">
-      <button class="tab active">Servicios</button>
-      <div class="buscar-cliente">
-        <input type="search" id="buscarCliente" placeholder="Buscar cliente" aria-label="Buscar cliente" />
-        <button class="search-small" aria-label="Buscar cliente">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M21 21l-4.35-4.35" stroke="#8f8f8f" stroke-width="1.6" stroke-linecap="round"/>
-            <circle cx="11" cy="11" r="6" stroke="#8f8f8f" stroke-width="1.6" fill="none"/>
+      <div class="tabs-left">
+        <button class="tab active">Servicios</button>
+
+        <div class="buscar-cliente">
+          <input type="search" id="buscarCliente" placeholder="Buscar cliente" aria-label="Buscar cliente" />
+          <button class="search-small" aria-label="Buscar cliente">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 21l-4.35-4.35" stroke="#8f8f8f" stroke-width="1.6" stroke-linecap="round"/>
+              <circle cx="11" cy="11" r="6" stroke="#8f8f8f" stroke-width="1.6" fill="none"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="tabs-right">
+        <button class="user-avatar" title="Perfil" aria-label="Perfil">
+          <svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true">
+            <circle cx="12" cy="8" r="4" fill="#9fdcca"></circle>
+            <path d="M4 20c1.8-4.4 7.4-4.4 8-4.4s6.2 0 8 4.4" fill="#9fdcca"></path>
           </svg>
         </button>
       </div>
