@@ -6,27 +6,27 @@ document.addEventListener('DOMContentLoaded', function () {
   const linkShowLogin = document.getElementById('link-show-login');
 
   function showLogin(){
-    // show login form, hide register
+    // mostrar formulario de login, ocultar registro
     formLogin.classList.remove('hidden');
     formRegister.classList.add('hidden');
-    // move focus for accessibility
+    // mover el foco para accesibilidad
     const first = formLogin.querySelector('input');
     if (first) first.focus();
   }
 
   function showRegister(){
-    // show register form, hide login
+    // mostrar formulario de registro, ocultar login
     formRegister.classList.remove('hidden');
     formLogin.classList.add('hidden');
     const first = formRegister.querySelector('input');
     if (first) first.focus();
   }
 
-  // footer links toggle
+  // enlaces del pie para alternar formularios
   if (linkShowRegister) linkShowRegister.addEventListener('click', function(e){ e.preventDefault(); showRegister(); });
   if (linkShowLogin) linkShowLogin.addEventListener('click', function(e){ e.preventDefault(); showLogin(); });
 
-  // Update the Bienvenido section dynamically based on the active form
+  // Actualizar la sección Bienvenido dinámicamente según el formulario activo
   const headerTitle = document.querySelector('.brand h1');
   const welcomeText = document.querySelector('.Bienvenido p');
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  // Update the text when toggling forms
+  // Actualizar el texto al alternar entre formularios
   linkShowRegister.addEventListener('click', function (e) {
     e.preventDefault();
     showRegister();
@@ -53,53 +53,42 @@ document.addEventListener('DOMContentLoaded', function () {
     updateWelcomeText(true);
   });
 
-  // Set initial state based on the visible form
+  // Establecer estado inicial según el formulario visible
   updateWelcomeText(!formLogin.classList.contains('hidden'));
 
-  // Login submit
+  // Envío del formulario de login
   formLogin.addEventListener('submit', function (e) {
     e.preventDefault();
     const formData = new FormData(formLogin);
     const email = formData.get('email')?.trim();
     const password = formData.get('password')?.trim();
-    // Basic client-side check
+    // Verificación básica del lado del cliente
     if (!email || !password) {
       alert('Por favor completa todos los campos.');
       return;
     }
-    // TODO: replace with real authentication call
+    // TODO: reemplazar con llamada real de autenticación
     console.log('Login', { email, password });
     alert('Petición de inicio de sesión enviada (simulada).');
     formLogin.reset();
   });
 
-  // Register submit
+  // Envío del formulario de registro
   formRegister.addEventListener('submit', function (e) {
     e.preventDefault();
     const formData = new FormData(formRegister);
     const fullname = formData.get('fullname')?.trim();
     const email = formData.get('email')?.trim();
     const password = formData.get('password')?.trim();
-    const passwordConfirm = formData.get('passwordConfirm')?.trim();
 
-    if (!fullname || !email || !password || !passwordConfirm) {
+    if (!fullname || !email || !password) {
       alert('Por favor completa todos los campos.');
       return;
     }
-    if (password !== passwordConfirm) {
-      alert('Las contraseñas no coinciden.');
-      return;
-    }
-    // TODO: replace with real registration call
+    // TODO: reemplazar con llamada real de registro
     console.log('Register', { fullname, email });
     alert('Registro enviado (simulado).');
     formRegister.reset();
     showLogin();
-  });
-
-  // Small keyboard accessibility: allow left/right arrow to toggle
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') showLogin();
-    if (e.key === 'ArrowRight') showRegister();
   });
 });
