@@ -46,44 +46,6 @@
   opacity: 80%;
 }
 
-/* NAV dentro del hero — debe tener z-index mayor que overlay */
-.hero-navbar {
-  position: absolute;
-  top: 22px;
-  left: 0;
-  right: 0;
-  z-index: 5;
-  pointer-events: auto;
-}
-
-/* Estilos del logo para verse grande y ligeramente translúcido */
-.logo {
-  height: 54px;
-  display: block;
-  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.2));
-}
-
-/* Search pill: blanco con sombra */
-.search-pill {
-  background: #fff;
-  border-radius: 999px;
-  padding: 8px 14px;
-  align-items: center;
-  box-shadow: 0 8px 20px rgba(2,6,23,0.18);
-  min-width: 260px;
-}
-
-/* Input dentro de la pill — fondo transparente para que se vea blanco */
-.search-pill .form-control {
-  background: transparent;
-  color: #111;
-  min-width: 160px;
-}
-.search-pill .form-control::placeholder { color: #9aa0a6; }
-
-/* Botón hamburguesa (hacer los trazos en blanco) */
-#menuToggle svg path { stroke: #fff; }
-
 /* Contenido principal centrado */
 .hero-content {
   position: relative;
@@ -129,7 +91,7 @@
 /* flecha */
 .down-anchor {
   position: absolute;
-  bottom: 70px;
+  bottom: 20vh;
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
@@ -139,10 +101,4 @@
 /* Responsive: reducir altura en móviles y mostrar búsqueda en modo hamburguesa si necesario */
 @media (max-width: 991px) {
   .hero { min-height: 520px; height: 72vh; }
-  .search-pill { min-width: 200px; }
-  .logo { height: 48px; }
-}
-
-.nav-link {
-  color: #111;
 }
