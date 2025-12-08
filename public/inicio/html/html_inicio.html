@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Clinica Agenda</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/style_inicio.css" />
+</head>
+<body>
+
+  <!-- HERO (full-width) -->
+  <header class="hero-wrapper">
+    <div class="hero" id="inicio">
+      <div class="hero-bg" role="img" aria-label="Edificio de la clínica"></div>
+
+      <!-- overlay oscuro -->
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <!-- NAV dentro del hero (z-index mayor que overlay) -->
+      <nav class="hero-navbar d-flex align-items-center" role="navigation" aria-label="Barra principal">
+        <div class="container-fluid d-flex align-items-center justify-content-between px-4">
+          <!-- Logo a la izquierda -->
+          <a class="navbar-brand" href="#" aria-label="Inicio">
+            <img src="../../imagenes/logo-de-la-clinica.png" alt="Logotipo Clínica" class="logo">
+          </a>
+
+          <!-- Controles a la derecha: búsqueda + icono hamburguesa -->
+          <div class="d-flex align-items-center gap-3">
+            <div class="search-pill d-none d-md-flex align-items-center px-3">
+              <input id="heroSearch" class="form-control border-0 bg-transparent" type="search" placeholder="Búsqueda" aria-label="Buscar">
+              <button id="searchBtn" class="btn btn-link p-0 ms-2" aria-label="Buscar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M21 21l-4.35-4.35" stroke="#1f2937" stroke-width="1.6" stroke-linecap="round"></path>
+                  <circle cx="11" cy="11" r="6" stroke="#1f2937" stroke-width="1.6"></circle>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Hamburger -->
+            <button id="menuToggle" class="btn btn-transparent p-2" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuOffcanvas">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="#fff" stroke-width="2" stroke-linecap="round"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Contenido principal centrado -->
+      <div class="hero-content d-flex flex-column justify-content-center align-items-center text-center text-white px-3">
+        <h1 class="hero-title">Clínica Nuestra Señora de Guadalupe</h1>
+        <p class="hero-sub">CALIDEZ CON SENTIDO HUMANO</p>
+        <a href="../../logIn/html/html_logIn.html" class="btn cta-btn mt-3">GET STARTED</a>
+
+        <a href="#servicios" class="down-anchor mt-4" aria-label="Ir a servicios">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 5v14" stroke="#fff" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M19 12l-7 7-7-7" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Offcanvas (Bootstrap) -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="menuOffcanvas" aria-labelledby="menuOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 id="menuOffcanvasLabel">Menú</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+    </div>
+    <div class="offcanvas-body">
+      <nav class="nav flex-column">
+        <button class="btn" data-bs-dismiss="offcanvas"><a class="nav-link" href="#inicio">Inicio</a></button>
+        <button class="btn" data-bs-dismiss="offcanvas"><a class="nav-link" href="../../logIn/html/html_logIn.html">Iniciar Sesión</a></button>
+        <button class="btn" data-bs-dismiss="offcanvas"><a class="nav-link" href="../../calendario/html/html_calendario.html">Calendario</a></button>
+        <button class="btn" data-bs-dismiss="offcanvas"><a class="nav-link" href="../../agendados/html/html_agendados.html">Agendados</a></button>
+        <button class="btn" data-bs-dismiss="offcanvas"><a class="nav-link" href="../../agendar_cita/html/html_agendar_cita.html">Agendar Cita</a></button>
+        <button class="btn" data-bs-dismiss="offcanvas"><a class="nav-link" href="../../perfil_usuario/html/html_perfil_usuario.html">Perfil Usuario</a></button>
+        <button class="btn" data-bs-dismiss="offcanvas"><a class="nav-link" href="#servicios">Servicios</a></button>
+        <!--<a class="nav-link" href="#especialidades">Especialidades</a>
+        <a class="nav-link" href="#contacto">Contacto</a> -->
+      </nav>
+    </div>
+  </div>
+
+  <main id="servicios" class="container my-5">
+    <h2>Servicios</h2>
+    <p>Contenido de ejemplo para la sección de servicios (Por programar interfaces).</p>
+  </main>
+
+  <footer class="py-4 text-center text-muted bg-light">© 2025 Clínica Agenda</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/script_inicio.js"></script>
+</body>
+</html>

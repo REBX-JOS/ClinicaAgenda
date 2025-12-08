@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Perfil — Calidez con sentido humano</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/style_perfil_usuario.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-left">
+      <!-- Logo de la clínica -->
+      <div class="logo" aria-hidden="true">
+        <img src="../../../imagenes/logo-de-la-clinica.png" alt="Logotipo Clínica" style="width: 56px; height: 56px;">
+      </div>
+      <div class="brand">
+        <div class="brand-title">CALIDEZ CON SENTIDO HUMANO</div>
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center gap-3">
+      <div class="search-pill d-none d-md-flex align-items-center px-3">
+        <input id="heroSearch" class="form-control border-0 bg-transparent" type="search" placeholder="Búsqueda" aria-label="Buscar">
+        <button id="searchBtn" class="btn btn-link p-0 ms-2" aria-label="Buscar">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 21l-4.35-4.35" stroke="#1f2937" stroke-width="1.6" stroke-linecap="round"></path>
+            <circle cx="11" cy="11" r="6" stroke="#1f2937" stroke-width="1.6"></circle>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Hamburger -->
+      <button id="menuToggle" class="btn btn-transparent p-2" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuOffcanvas">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke="#000" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Avatar con botón para cambiar foto -->
+    <section class="profile-top">
+      <div class="avatar-wrapper">
+        <div id="avatar" class="avatar" title="Foto de perfil">
+          <!-- Si quieres poner una imagen inicial, usa inline style background-image -->
+        </div>
+        <button id="changePhotoBtn" class="change-photo-btn" aria-controls="photoInput">CAMBIAR
+          <span class="small">FOTOGRAFÍA</span>
+        </button>
+        <input id="photoInput" type="file" accept="image/*" style="display:none" />
+      </div>
+    </section>
+
+    <!-- Tarjeta con pestañas -->
+    <section class="card-section">
+      <div class="tabs" role="tablist" aria-label="Secciones del perfil">
+        <button class="tab active" role="tab" aria-selected="true" data-target="info">Información general</button>
+        <button class="tab" role="tab" aria-selected="false" data-target="datos">Datos personales</button>
+      </div>
+
+      <div class="card" id="info" role="tabpanel">
+        <form id="profileForm" class="profile-form">
+          <label class="field">
+            <span class="field-label">Nombre de usuario</span>
+            <input name="username" type="text" placeholder="Nombre de usuario" />
+          </label>
+
+          <label class="field">
+            <span class="field-label">Correo electrónico</span>
+            <input name="email" type="email" placeholder="correo@ejemplo.com" />
+          </label>
+
+          <label class="field">
+            <span class="field-label">Número de teléfono</span>
+            <input name="phone" type="tel" placeholder="+34 600 000 000" />
+          </label>
+
+          <div class="card-actions">
+            <button id="saveBtn" class="save-btn" type="submit">GUARDAR<br/><span class="small">CAMBIOS</span></button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card hidden" id="datos" role="tabpanel" aria-hidden="true">
+        <!-- Contenido de 'Datos personales' -->
+        <form class="profile-form">
+          <label class="field">
+            <span class="field-label">Nombre completo</span>
+            <input name="fullname" type="text" placeholder="Nombre completo" />
+          </label>
+          <label class="field">
+            <span class="field-label">Dirección</span>
+            <input name="address" type="text" placeholder="Calle, número, ciudad" />
+          </label>
+          <label class="field">
+            <span class="field-label">Fecha de nacimiento</span>
+            <input name="birth" type="date" />
+          </label>
+
+          <div class="card-actions">
+            <button class="save-btn" type="submit">GUARDAR<br/><span class="small">CAMBIOS</span></button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="../scripts/script_perfil_usuario.js" defer></script>
+</body>
+</html>
