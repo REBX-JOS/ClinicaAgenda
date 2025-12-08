@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Bienvenido — ClinicaAgenda</title>
     <link rel="stylesheet" href="../styles/style_logIn.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
     <main class="page">
@@ -14,18 +14,15 @@
             <img src="../../../imagenes/logo-de-la-clinica.png" alt="error">
         </div>
       </section>
-
       <section class="right-panel">
         <header class="brand">
             <h1></h1>
         </header>
-
         <div class="card">
-            <div class="Bienvenido">
-                <h2>Hola</h2>
-                <p></p>
-            </div>
-
+          <div class="Bienvenido">
+            <h2>Hola</h2>
+            <p></p>
+          </div>
           <form id="form-login" class="form" autocomplete="on">
             <label>
               <input type="email" name="email" inputmode="email" required placeholder="Usuario/Correo" />
@@ -39,10 +36,9 @@
             <button type="button" class="link" id="forgot">¿Olvidaste tu contraseña?</button>
             <p class="form-footer">No tienes una cuenta? <a href="#" id="link-show-register">Registrarse</a></p>
           </form>
-
           <form id="form-register" class="form hidden" autocomplete="on">
             <label>
-              <input type="text" name="fullname" required placeholder="Nombre de usuario" />
+              <input type="text" name="fullname" required placeholder="Nombre completo" />
             </label>
             <label>
               <input type="email" name="email" required placeholder="Correo electrónico" />
@@ -55,11 +51,23 @@
             </div>
             <p class="form-footer">Ya tienes una cuenta? <a href="#" id="link-show-login">Ingresar sesión</a></p>
           </form>
+          <form id="form-recover" class="form hidden" autocomplete="on">
+            <label>
+              <input type="email" name="email" required placeholder="Correo electrónico registrado" />
+            </label>
+            <label>
+              <input type="text" name="fullname" required placeholder="Nombre completo registrado" />
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="primary">Recuperar contraseña</button>
+            </div>
+            <p class="form-footer">¿Recuerdas tu contraseña? <a href="#" id="link-show-login2">Ingresar sesión</a></p>
+          </form>
+          <div id="feedbackMsg" class="form-footer mt-2" style="color:#1cad8f"></div>
         </div>
       </section>
     </main>
-
     <script src="../scripts/script_logIn.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

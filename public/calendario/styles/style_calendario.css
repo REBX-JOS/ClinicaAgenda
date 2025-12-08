@@ -137,7 +137,6 @@ button.hamburger.open > .bars{background:transparent} button.hamburger.open > .b
   cursor: pointer;
 }
 
-
 /* Responsive */
 @media (max-width:920px){
   .buscar-cliente input{width:220px}
