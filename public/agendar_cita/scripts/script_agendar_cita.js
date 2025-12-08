@@ -1,3 +1,7 @@
+import('/shared/scripts/session_guard.js')
+  .then(() => checkSessionRedirect(true))
+  .catch(() => window.location.href="/logIn/html/html_logIn.html");
+
 document.addEventListener('DOMContentLoaded', () => {
   const serviceSearch = document.getElementById('service-search');
   const serviceImg = document.getElementById('service-img');

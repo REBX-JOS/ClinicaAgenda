@@ -1,12 +1,14 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
+session_start();
 $projectRoot = dirname(__DIR__, 2);
 require_once $projectRoot . '/config/db.php';
 
-// GET: obtén usuario por id
+// Session user_id ALWAYS prevails, no ?user_id param required for security
+$user_id = $_SESSION['user_id'] ?? 0;
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-  $user_id = intval($_GET['user_id'] ?? 0);
-  if (!$user_id) { echo json_encode(['success'=>false,'error'=>'Usuario no especificado']); exit; }
+  if (!$user_id) { echo json_encode(['success'=>false,'error'=>'No autenticado']); exit; }
   $stmt = $pdo->prepare("SELECT id, username, fullname, email, phone, address, birth_date, avatar_path FROM users WHERE id=?");
   $stmt->execute([$user_id]);
   $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -15,9 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   exit;
 }
 
-// POST (foto) => multipart
+// POST (foto subida)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photo'])) {
-  $user_id = intval($_POST['user_id'] ?? 0);
   if (!$user_id || !isset($_FILES['photo'])) {
     echo json_encode(['success'=>false,'error'=>'Datos insuficientes']); exit;
   }
@@ -39,13 +40,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['photo'])) {
   }
 }
 
-// POST (update datos general/personal) => JSON
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER["CONTENT_TYPE"] === "application/json") {
   $input = json_decode(file_get_contents('php://input'), true);
-  $user_id = intval($input['user_id'] ?? 0);
   if (!$user_id) { echo json_encode(['success'=>false,'error'=>'Falta usuario']); exit; }
   if (isset($input['action']) && $input['action']=='update_general') {
-    // General
     $username = trim($input['username'] ?? '');
     $email = trim($input['email'] ?? '');
     $phone = trim($input['phone'] ?? '');
@@ -54,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SERVER["CONTENT_TYPE"] === "appli
     echo json_encode(['success'=>$ok]); exit;
   }
   if (isset($input['action']) && $input['action']=='update_personal') {
-    // Personales
     $fullname = trim($input['fullname'] ?? '');
     $address = trim($input['address'] ?? '');
     $birth_date = $input['birth_date'] ?? null;

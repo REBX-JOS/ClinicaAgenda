@@ -1,3 +1,7 @@
+import('/shared/scripts/session_guard.js')
+  .then(() => checkSessionRedirect(true))
+  .catch(() => window.location.href="/logIn/html/html_logIn.html");
+
 document.addEventListener('DOMContentLoaded', function () {
   const servicesList = document.getElementById('servicesList');
   const showMoreBtn = document.getElementById('showMore');
