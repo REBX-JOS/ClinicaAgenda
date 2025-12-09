@@ -4,38 +4,65 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Servicios - Clínica</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../styles/style_agendados.css" />
+  <link rel="stylesheet" href="../../shared/styles/style_navbar.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <div class="brand">
-        <img src="../../../imagenes/logo-de-la-clinica.png" alt="Logo clínica" class="logo" />
-        <div class="brand-text">CALIDEZ CON SENTIDO HUMANO</div>
-      </div>
-
-      <div class="topbar-actions">
-        <div class="search-top">
-          <input type="search" placeholder="Búsqueda" aria-label="Búsqueda" />
-          <button class="search-btn" aria-label="Buscar">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M21 21l-4.35-4.35" stroke="#9a9a9a" stroke-width="1.8" stroke-linecap="round"/>
-              <circle cx="11" cy="11" r="6" stroke="#9a9a9a" stroke-width="1.8" fill="none"/>
+  <header class="navbar-global">
+    <nav class="navbar-inner d-flex align-items-center" role="navigation" aria-label="Barra principal">
+      <div class="container-fluid d-flex align-items-center justify-content-between px-4">
+        <!-- Logo y marca -->
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/inicio/html/html_inicio.html" aria-label="Inicio">
+          <img src="/imagenes/logo-de-la-clinica.png" alt="Logotipo Clínica" class="logo" style="width:56px;height:56px;">
+          <span class="brand-title">CALIDEZ CON SENTIDO HUMANO</span>
+        </a>
+        <!-- Search desktop -->
+        <div class="search-pill d-none d-md-flex align-items-center px-3">
+          <input id="navbarSearch" class="form-control border-0 bg-transparent" type="search" placeholder="Búsqueda" aria-label="Buscar">
+          <button id="searchBtn" class="btn btn-link p-0 ms-2" aria-label="Buscar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 21l-4.35-4.35" stroke="#1f2937" stroke-width="1.6" stroke-linecap="round"></path>
+              <circle cx="11" cy="11" r="6" stroke="#1f2937" stroke-width="1.6"></circle>
             </svg>
           </button>
         </div>
+        <!-- Hamburger -->
+        <button id="menuToggle" class="btn btn-transparent p-2" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuOffcanvas">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="#000" stroke-width="2" stroke-linecap="round"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+    <div class="navbar-separator"></div>
+    <!-- Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="menuOffcanvas" aria-labelledby="menuOffcanvasLabel">
+      <div class="offcanvas-header">
+        <h5 id="menuOffcanvasLabel">Menú</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      </div>
+      <div class="offcanvas-body">
+        <nav class="nav flex-column">
+          <!-- Enlaces comunes -->
+          <a class="nav-link my-1" href="/inicio/html/html_inicio.html">Inicio</a>
+          <a class="nav-link my-1 nav-guest-only" href="/logIn/html/html_logIn.html">Iniciar Sesión</a>
+          <a class="nav-link my-1 nav-auth-required" style="display:none" href="/perfil_usuario/html/html_perfil_usuario.html">Mi Perfil</a>
+          <a class="nav-link my-1 nav-auth-required" style="display:none" href="/agendados/html/html_agendados.html">Mis Agendados</a>
+          <a class="nav-link my-1 nav-auth-required" style="display:none" href="/agendar_cita/html/html_agendar_cita.html">Agendar Cita</a>
+          <a class="nav-link my-1 nav-auth-required" style="display:none" href="/calendario/html/html_calendario.html">Calendario</a>
+          <a class="nav-link my-1" href="/inicio/html/html_inicio.html#servicios">Servicios</a>
+          <a class="nav-link my-1 nav-auth-required nav-admin-only" href="/admin/dashboard.html" style="display:none">Administrador</a>
+          <button class="btn nav-auth-required mt-3" style="display:none" onclick="logoutSession()">Cerrar sesión</button>
+        </nav>
       </div>
     </div>
   </header>
 
   <main class="container">
-    <!-- WRAPPER: ahora left (tab + buscar) y right (avatar) -->
-    <nav class="tabs-row">
+    <nav class="tabs-row" aria-label="Subnavegación">
       <div class="tabs-left">
         <button class="tab active">Servicios</button>
-
         <div class="buscar-cliente">
           <input type="search" id="buscarCliente" placeholder="Buscar cliente" aria-label="Buscar cliente" />
           <button class="search-small" aria-label="Buscar cliente">
@@ -46,9 +73,8 @@
           </button>
         </div>
       </div>
-
       <div class="tabs-right">
-        <button class="user-avatar" title="Perfil" aria-label="Perfil">
+        <button class="user-avatar" title="Perfil" aria-label="Perfil" onclick="window.location.href='/perfil_usuario/html/html_perfil_usuario.html'">
           <svg viewBox="0 0 24 24" width="44" height="44" aria-hidden="true">
             <circle cx="12" cy="8" r="4" fill="#9fdcca"></circle>
             <path d="M4 20c1.8-4.4 7.4-4.4 8-4.4s6.2 0 8 4.4" fill="#9fdcca"></path>
@@ -56,14 +82,9 @@
         </button>
       </div>
     </nav>
-
     <div class="tabs-separator"></div>
-
     <section class="services-list-wrap">
-      <div id="servicesList" class="services-list" aria-live="polite">
-        <!-- filas generadas por scripts.js -->
-      </div>
-
+      <div id="servicesList" class="services-list" aria-live="polite"></div>
       <div class="show-more-wrap">
         <button id="showMore" class="show-more" aria-expanded="false">
           Mostrar más
@@ -74,8 +95,8 @@
       </div>
     </section>
   </main>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../scripts/script_agendados.js"></script>
+  <script src="../../shared/scripts/script_navbar.js"></script>
+  <script src="../scripts/script_agendados.js" defer></script>
 </body>
 </html>

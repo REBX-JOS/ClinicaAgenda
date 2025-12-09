@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (json.success) {
         feedbackMsg.style.color = 'green';
         feedbackMsg.textContent = '¡Bienvenido!';
-        setTimeout(()=>location.href='../../inicio/html/html_inicio.html',1200);
+        setTimeout(()=>location.href='../../inicio/html/html_inicio.html',0);
       } else {
         feedbackMsg.style.color = '#c00';
         feedbackMsg.textContent = json.error || 'Error al iniciar sesión.';

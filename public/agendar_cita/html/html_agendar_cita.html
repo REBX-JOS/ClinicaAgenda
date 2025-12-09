@@ -5,32 +5,53 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Agendar servicio — Clínica</title>
   <link rel="stylesheet" href="../styles/style_agendar_cita.css" />
+  <link rel="stylesheet" href="../../shared/styles/style_navbar.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-left">
-      <div class="logo" aria-hidden="true">
-        <img src="../../../imagenes/logo-de-la-clinica.png" alt="Logotipo Clínica" style="width: 56px; height: 56px;">
-      </div>
-      <div class="brand">
-        <div class="brand-title">CALIDEZ CON SENTIDO HUMANO</div>
-      </div>
-    </div>
-    <div class="d-flex align-items-center gap-3">
-      <div class="search-pill d-none d-md-flex align-items-center px-3">
-        <input id="heroSearch" class="form-control border-0 bg-transparent" type="search" placeholder="Búsqueda" aria-label="Buscar">
-        <button id="searchBtn" class="btn btn-link p-0 ms-2" aria-label="Buscar">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M21 21l-4.35-4.35" stroke="#1f2937" stroke-width="1.6" stroke-linecap="round"></path>
-            <circle cx="11" cy="11" r="6" stroke="#1f2937" stroke-width="1.6"></circle>
+  <header class="navbar-global">
+    <nav class="navbar-inner d-flex align-items-center" role="navigation" aria-label="Barra principal">
+      <div class="container-fluid d-flex align-items-center justify-content-between px-4">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/inicio/html/html_inicio.html" aria-label="Inicio">
+          <img src="/imagenes/logo-de-la-clinica.png" alt="Logotipo Clínica" class="logo" style="width:56px;height:56px;">
+          <span class="brand-title">CALIDEZ CON SENTIDO HUMANO</span>
+        </a>
+        <div class="search-pill d-none d-md-flex align-items-center px-3">
+          <input id="navbarSearch" class="form-control border-0 bg-transparent" type="search" placeholder="Búsqueda" aria-label="Buscar">
+          <button id="searchBtn" class="btn btn-link p-0 ms-2" aria-label="Buscar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M21 21l-4.35-4.35" stroke="#1f2937" stroke-width="1.6" stroke-linecap="round"></path>
+              <circle cx="11" cy="11" r="6" stroke="#1f2937" stroke-width="1.6"></circle>
+            </svg>
+          </button>
+        </div>
+        <button id="menuToggle" class="btn btn-transparent p-2" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuOffcanvas">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="#000" stroke-width="2" stroke-linecap="round"></path>
           </svg>
         </button>
       </div>
-      <button id="menuToggle" class="btn btn-transparent p-2" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuOffcanvas">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M3 6h18M3 12h18M3 18h18" stroke="#000" stroke-width="2" stroke-linecap="round"></path>
-        </svg>
-      </button>
+    </nav>
+    <div class="navbar-separator"></div>
+    <!-- Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="menuOffcanvas" aria-labelledby="menuOffcanvasLabel">
+      <div class="offcanvas-header">
+        <h5 id="menuOffcanvasLabel">Menú</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+      </div>
+      <div class="offcanvas-body">
+        <nav class="nav flex-column">
+          <a class="nav-link my-1" href="/inicio/html/html_inicio.html">Inicio</a>
+          <a class="nav-link my-1 nav-guest-only" href="/logIn/html/html_logIn.html">Iniciar Sesión</a>
+          <a class="nav-link my-1 nav-auth-required" style="display:none" href="/perfil_usuario/html/html_perfil_usuario.html">Mi Perfil</a>
+          <a class="nav-link my-1 nav-auth-required" style="display:none" href="/agendados/html/html_agendados.html">Mis Agendados</a>
+          <a class="nav-link my-1 nav-auth-required" style="display:none" href="/agendar_cita/html/html_agendar_cita.html">Agendar Cita</a>
+          <a class="nav-link my-1 nav-auth-required" style="display:none" href="/calendario/html/html_calendario.html">Calendario</a>
+          <a class="nav-link my-1" href="/inicio/html/html_inicio.html#servicios">Servicios</a>
+          <a class="nav-link my-1 nav-auth-required nav-admin-only" href="/admin/dashboard.html" style="display:none">Administrador</a>
+          <button class="btn nav-auth-required mt-3" style="display:none" onclick="logoutSession()">Cerrar sesión</button>
+        </nav>
+      </div>
     </div>
   </header>
   <main class="main-wrap">
@@ -69,6 +90,8 @@
       </div>
     </section>
   </main>
-  <script src="../scripts/script_agendar_cita.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../shared/scripts/script_navbar.js"></script>
+  <script src="../scripts/script_agendar_cita.js" defer></script>
 </body>
 </html>
