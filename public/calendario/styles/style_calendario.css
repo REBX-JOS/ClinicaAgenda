@@ -89,10 +89,102 @@ html,body{height:100%;margin:0;font-family: "Inter", -apple-system, BlinkMacSyst
   cursor: pointer;
 }
 
-/* Responsive - igual que antes, cambiar row/cell a calendar-row/calendar-cell*/
-@media (max-width:920px){
-  .buscar-cliente input{width:220px}
-  .search-top input{width:160px}
+
+.tabs-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 0 0 0;
+  margin-top: 8px;
+  border-bottom: 1px solid transparent;
+  flex-wrap: wrap;
+}
+.tabs-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+  flex: 1 1 0;
+}
+.tab {
+  background: var(--teal-light);
+  border-radius: 28px;
+  padding: 12px 26px;
+  border: 0;
+  color: var(--teal-strong);
+  font-weight: 600;
+  box-shadow: inset 0 -6px 0 rgba(0,0,0,0.02);
+  flex-shrink: 0;
+  margin-right: 6px;
+}
+
+.buscar-cliente {
+  display: flex;
+  align-items: center;
+  background: var(--teal-light);
+  border-radius: 999px;
+  box-shadow: 0 2px 7px rgba(116,191,176,0.07);
+  padding: 0 10px 0 0;
+  min-width: 220px;
+  overflow: hidden;
+  height: 46px; /* altura suficiente y adaptativa */
+}
+
+.buscar-cliente input {
+  background: transparent;
+  border: none;
+  padding: 0 18px;
+  border-radius: 999px;
+  outline: none;
+  min-width: 180px;
+  height: 44px;
+  font-size: 1.08rem;
+  color: #206867;
+  flex: 1;
+}
+.buscar-cliente input:focus {
+  background: #eaf6f2;
+}
+
+.buscar-cliente .search-small {
+  background: transparent;
+  border: none;
+  margin-left: 0;
+  height: 44px;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #206867;
+  border-radius: 999px;
+  transition: background 0.15s;
+}
+.buscar-cliente .search-small:hover {
+  background: #d2f2e7;
+}
+
+.tabs-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.user-avatar{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  border:3px solid var(--accent);
+  background:#fff;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:4px;
+  cursor:pointer;
+} 
+@media (max-width: 700px) {
+  .buscar-cliente { min-width: 0; width: 100%; }
+  .buscar-cliente input { min-width: 0; width: 100%; }
 }
 @media (max-width:700px){
   .tabs-row{flex-direction:column;align-items:flex-start;gap:12px}
